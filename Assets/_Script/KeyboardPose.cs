@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyboardPose : MonoBehaviour
 {
     public Animator modelAnimator;
-    void Update()
+    public string currentStatename;
+    public TMP_Text currentState;
+    public void Key2Pose()
     {
         if (Input.GetKeyDown(KeyCode.A))
             modelAnimator.SetInteger("姿势代码",1);
@@ -65,6 +69,18 @@ public class KeyboardPose : MonoBehaviour
             modelAnimator.SetInteger("姿势代码",28);
         else
             modelAnimator.SetInteger("姿势代码",0);
+    }
 
+    public void ShowCurrentState()
+    {
+        AnimatorClipInfo[] m_currentClipInfo;
+        m_currentClipInfo = this.modelAnimator.GetCurrentAnimatorClipInfo(0);
+        currentStatename = m_currentClipInfo[0].clip.name;
+        currentState.text = currentStatename;
+    }
+    void Update()
+    {
+        Key2Pose();
+        ShowCurrentState();
     }
 }
