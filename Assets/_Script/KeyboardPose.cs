@@ -9,6 +9,10 @@ public class KeyboardPose : MonoBehaviour
     public Animator modelAnimator;
     public string currentStatename;
     public TMP_Text currentState;
+    public TMP_Text currentKeepState;
+    public GameObject tutorialPanel;
+    public GameObject backgroundText;
+    
     public void Key2Pose()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -77,6 +81,34 @@ public class KeyboardPose : MonoBehaviour
         m_currentClipInfo = this.modelAnimator.GetCurrentAnimatorClipInfo(0);
         currentStatename = m_currentClipInfo[0].clip.name;
         currentState.text = currentStatename;
+    }
+
+    public void SwitchKeepMotionState()
+    {
+        modelAnimator.SetBool("是否持续", !modelAnimator.GetBool("是否持续"));
+        if (modelAnimator.GetBool("是否持续"))
+            currentKeepState.text = "是";
+        else
+            currentKeepState.text = "否";
+    }
+
+    public void BackToMenu()
+    {
+        Application.LoadLevel(0);
+    }
+
+    public void SwitchTutorial()
+    {
+        if (tutorialPanel.activeSelf)
+        {
+            tutorialPanel.SetActive(false);
+            backgroundText.SetActive(true);
+        }
+        else
+        {
+            tutorialPanel.SetActive(true);
+            backgroundText.SetActive(false);
+        }
     }
     void Update()
     {
