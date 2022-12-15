@@ -74,7 +74,6 @@ public class KeyboardPose : MonoBehaviour
         else
             modelAnimator.SetInteger("姿势代码",0);
     }
-
     public void ShowCurrentState()
     {
         AnimatorClipInfo[] m_currentClipInfo;
@@ -83,6 +82,7 @@ public class KeyboardPose : MonoBehaviour
         currentState.text = currentStatename;
     }
 
+    
     public void SwitchKeepMotionState()
     {
         modelAnimator.SetBool("是否持续", !modelAnimator.GetBool("是否持续"));
@@ -91,12 +91,10 @@ public class KeyboardPose : MonoBehaviour
         else
             currentKeepState.text = "否";
     }
-
     public void BackToMenu()
     {
         Application.LoadLevel(0);
     }
-
     public void SwitchTutorial()
     {
         if (tutorialPanel.activeSelf)
@@ -110,6 +108,8 @@ public class KeyboardPose : MonoBehaviour
             backgroundText.SetActive(false);
         }
     }
+    
+    
     void Update()
     {
         Key2Pose();
