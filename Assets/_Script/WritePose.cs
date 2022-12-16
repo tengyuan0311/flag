@@ -255,7 +255,10 @@ public class WritePose : MonoBehaviour
         }
     }
 
-
+    public void BackToMenu()
+    {
+        Application.LoadLevel(0);
+    }
     public void RightPose(int angle)
     {
         modelAnimator.SetInteger("右手角度",angle);
